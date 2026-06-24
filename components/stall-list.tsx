@@ -11,6 +11,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { api } from "@/convex/_generated/api";
 
+// Crimson encodes leaderboard rank: the loudest stall reads loudest.
+// #1 full horn-crimson, podium (2–3) a dimmed crimson-ash, the rest stay ash.
+function rankColor(rank: number): string | undefined {
+	if (rank === 1) return "var(--horn)";
+	if (rank <= 3)
+		return "color-mix(in oklch, var(--horn) 55%, var(--muted-foreground))";
+	return undefined; // inherits text-muted-foreground
+}
+
 export function StallList() {
 	const stalls = useQuery(api.stalls.list);
 	const [search, setSearch] = useState("");
@@ -87,42 +96,58 @@ export function StallList() {
 			)}
 
 			<ul className="flex flex-col gap-3">
-				{filtered?.map((stall, idx) => (
-					<li key={stall._id}>
-						<div className="flex items-center gap-3 rounded-xl border bg-card p-3">
-							<span className="w-5 shrink-0 text-center text-sm font-bold tabular-nums text-muted-foreground">
-								{stall.count > 0 ? idx + 1 : "–"}
-							</span>
-							<Link href={`/stall/${stall._id}`} className="min-w-0 flex-1">
-								<p className="truncate font-semibold">{stall.name}</p>
-								<div className="mt-0.5 flex items-center gap-2">
-									{stall.count > 0 ? (
-										<>
-											<HornDisplay value={stall.avgHorns} size="sm" />
-											<span className="text-xs tabular-nums text-muted-foreground">
-												{stall.avgHorns.toFixed(1)} · {stall.count}
-												{stall.count === 1 ? " rating" : " ratings"}
-											</span>
-										</>
-									) : (
-										<span className="text-xs text-muted-foreground">
-											not rated yet
-										</span>
-									)}
-								</div>
-							</Link>
-							<RateDialog
-								stallId={stall._id}
-								stallName={stall.name}
-								trigger={
-									<Button size="sm" className="shrink-0">
-										Rate
-									</Button>
+				{filtered?.map((stall, idx) => {
+					const rank = stall.count > 0 ? idx + 1 : null;
+					const isLeader = rank === 1;
+					return (
+						<li key={stall._id}>
+							<div
+								className={
+									isLeader
+										? "flex items-center gap-3 rounded-xl border border-[color-mix(in_oklch,var(--horn)_45%,var(--border))] bg-[color-mix(in_oklch,var(--card),var(--horn)_8%)] p-3 shadow-[0_0_24px_-10px_var(--horn)]"
+										: "flex items-center gap-3 rounded-xl border bg-card p-3"
 								}
-							/>
-						</div>
-					</li>
-				))}
+							>
+								<span
+									className="w-5 shrink-0 text-center text-sm font-bold tabular-nums text-muted-foreground"
+									style={rank ? { color: rankColor(rank) } : undefined}
+								>
+									{rank ?? "–"}
+								</span>
+								<Link href={`/stall/${stall._id}`} className="min-w-0 flex-1">
+									<p className="truncate font-semibold">{stall.name}</p>
+									<div className="mt-0.5 flex items-center gap-2">
+										{stall.count > 0 ? (
+											<>
+												<HornDisplay value={stall.avgHorns} size="sm" />
+												<span className="text-xs tabular-nums text-muted-foreground">
+													<span className="font-semibold text-foreground">
+														{stall.avgHorns.toFixed(1)}
+													</span>{" "}
+													· {stall.count}
+													{stall.count === 1 ? " rating" : " ratings"}
+												</span>
+											</>
+										) : (
+											<span className="text-xs text-muted-foreground">
+												not rated yet
+											</span>
+										)}
+									</div>
+								</Link>
+								<RateDialog
+									stallId={stall._id}
+									stallName={stall.name}
+									trigger={
+										<Button size="sm" className="shrink-0">
+											Rate
+										</Button>
+									}
+								/>
+							</div>
+						</li>
+					);
+				})}
 			</ul>
 
 			{/* Sticky add button (mobile thumb reach, ADR 0011) */}
