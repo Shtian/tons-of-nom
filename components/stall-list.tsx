@@ -38,12 +38,9 @@ export function StallList() {
 	return (
 		<div className="mx-auto flex w-full max-w-md flex-1 flex-col px-4 pb-28 pt-6">
 			<header className="mb-5 text-center">
-				<h1 className="font-metal text-5xl uppercase tracking-tight text-foreground">
+				<h1 className="font-metal text-4xl uppercase tracking-tight text-foreground sm:text-5xl">
 					Tons of Nom
 				</h1>
-				<p className="mt-1 text-sm text-muted-foreground">
-					Rate the festival grub. More horns = more metal. 🤘
-				</p>
 			</header>
 
 			<div className="relative mb-4">
