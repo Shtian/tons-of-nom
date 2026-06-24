@@ -56,8 +56,12 @@ export function RateDialog({
 				description: description.trim() || undefined,
 				nickname,
 			});
-			if (horns === 5) metalConfetti();
-			toast.success(horns === 5 ? "FULL HORNS! 🤘🔥" : "Rating dropped 🤘");
+			const full = horns === 5;
+			if (full) metalConfetti();
+			toast.success(full ? "FULL HORNS! 🤘🔥" : "Rating dropped 🤘");
+			// Let the lit horns and confetti land before the lights drop —
+			// the one earned release shouldn't burst over an empty screen.
+			if (full) await new Promise((r) => setTimeout(r, 900));
 			setOpen(false);
 			reset();
 		} catch (err) {
@@ -86,7 +90,7 @@ export function RateDialog({
 
 				<div className="flex flex-col items-center gap-2 py-2">
 					<HornInput value={horns} onChange={setHorns} />
-					<span className="text-sm text-muted-foreground tabular-nums">
+					<span className="font-mono text-sm text-muted-foreground tabular-nums">
 						{horns > 0 ? `${horns.toFixed(1)} / 5` : "no horns yet"}
 					</span>
 				</div>
@@ -99,7 +103,7 @@ export function RateDialog({
 						onChange={(e) => setDescription(e.target.value)}
 						rows={3}
 					/>
-					<span className="self-end text-xs text-muted-foreground tabular-nums">
+					<span className="self-end font-mono text-xs text-muted-foreground tabular-nums">
 						{description.length}/{MAX_DESCRIPTION}
 					</span>
 				</div>

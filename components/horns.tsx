@@ -65,19 +65,22 @@ export function HornInput({
 				const half = i + 0.5;
 				const full = i + 1;
 				return (
-					<div key={i} className="relative">
+					<div
+						key={i}
+						className="relative rounded-lg focus-within:ring-3 focus-within:ring-ring/50"
+					>
 						<Horn fill={value - i} sizeClass="text-4xl" />
 						{/* Two oversized tap zones per horn for thumbs */}
 						<button
 							type="button"
 							aria-label={`${half} horns`}
-							className="absolute inset-y-0 left-0 w-1/2"
+							className="absolute inset-y-0 left-0 w-1/2 outline-none"
 							onClick={() => onChange(half)}
 						/>
 						<button
 							type="button"
 							aria-label={`${full} horns`}
-							className="absolute inset-y-0 right-0 w-1/2"
+							className="absolute inset-y-0 right-0 w-1/2 outline-none"
 							onClick={() => onChange(full)}
 						/>
 					</div>
