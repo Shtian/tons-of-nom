@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-24T00:00:00Z",
+  "title": "Design System: Tons of Nom",
+  "extensions": {
+    "colorMeta": {
+      "blood-crimson": { "role": "primary", "displayName": "Blood Crimson", "canonical": "oklch(0.55 0.23 27)", "tonalRamp": ["oklch(0.20 0.10 27)", "oklch(0.28 0.14 27)", "oklch(0.36 0.18 27)", "oklch(0.45 0.21 27)", "oklch(0.55 0.23 27)", "oklch(0.66 0.22 27)", "oklch(0.78 0.16 27)", "oklch(0.90 0.08 27)"] },
+      "horn-crimson": { "role": "primary", "displayName": "Horn Crimson", "canonical": "oklch(0.68 0.24 27)", "tonalRamp": ["oklch(0.24 0.12 27)", "oklch(0.33 0.16 27)", "oklch(0.42 0.20 27)", "oklch(0.52 0.23 27)", "oklch(0.68 0.24 27)", "oklch(0.78 0.19 27)", "oklch(0.87 0.12 27)", "oklch(0.94 0.06 27)"] },
+      "stage-black": { "role": "neutral", "displayName": "Stage Black", "canonical": "oklch(0.145 0 0)", "tonalRamp": ["oklch(0.145 0 0)", "oklch(0.205 0 0)", "oklch(0.269 0 0)", "oklch(0.37 0 0)", "oklch(0.50 0 0)", "oklch(0.64 0 0)", "oklch(0.80 0 0)", "oklch(0.985 0 0)"] },
+      "card-black": { "role": "neutral", "displayName": "Card Black", "canonical": "oklch(0.205 0 0)" },
+      "elevated-black": { "role": "neutral", "displayName": "Elevated Black", "canonical": "oklch(0.269 0 0)" },
+      "bone-white": { "role": "neutral", "displayName": "Bone White", "canonical": "oklch(0.985 0 0)" },
+      "ash-gray": { "role": "neutral", "displayName": "Ash Gray", "canonical": "oklch(0.708 0 0)" },
+      "border-veil": { "role": "neutral", "displayName": "Border Veil", "canonical": "oklch(1 0 0 / 10%)" },
+      "danger-red": { "role": "tertiary", "displayName": "Danger Red", "canonical": "oklch(0.704 0.191 22.216)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display (Metal Wordmark)", "purpose": "The 'TONS OF NOM' wordmark only. The single appearance of the Faceless metal face." },
+      "headline": { "displayName": "Headline", "purpose": "Empty-state and section leads." },
+      "title": { "displayName": "Title", "purpose": "Stall names, dialog titles — the primary scannable text." },
+      "body": { "displayName": "Body", "purpose": "Descriptions, tagline, supporting copy." },
+      "label": { "displayName": "Label (Mono)", "purpose": "Rank numbers, scores, counts — tabular figures that must align." }
+    },
+    "shadows": [
+      { "name": "horn-glow", "value": "drop-shadow(0 0 2px color-mix(in oklch, oklch(0.68 0.24 27) 70%, transparent))", "purpose": "The only glow in the system — crimson cast on the filled portion of a horn glyph so the score reads as lit." }
+    ],
+    "motion": [
+      { "name": "press", "value": "translateY(1px)", "purpose": "Firm physical button press on :active. No bounce." },
+      { "name": "ease-state", "value": "200ms ease", "purpose": "Default transition for color/opacity state changes (hover, focus)." },
+      { "name": "metal-moment", "value": "canvas-confetti burst, crimson/bone palette", "purpose": "The one release: fired on a full five-horn rating. Suppressed under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "375px–430px (primary and effectively only target)" },
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single call-to-action per surface — Rate, Add a stall. Crimson fill, full-width when sticky-bottom.",
+      "html": "<button class=\"ds-btn-primary\">Rate</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; height: 2rem; padding: 0 0.625rem; gap: 0.375rem; background: oklch(0.55 0.23 27); color: oklch(0.985 0 0); font-family: Geist, ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 10px; cursor: pointer; transition: background 200ms ease, transform 100ms ease; } .ds-btn-primary:hover { background: oklch(0.55 0.23 27 / 0.8); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px oklch(0.55 0.23 27 / 0.5); } .ds-btn-primary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Lower-priority action — e.g. add the searched-for stall. Elevated-black fill.",
+      "html": "<button class=\"ds-btn-secondary\">Add “Birria Tacos”</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; height: 2rem; padding: 0 0.625rem; gap: 0.375rem; background: oklch(0.269 0 0); color: oklch(0.985 0 0); font-family: Geist, ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; border: none; border-radius: 10px; cursor: pointer; transition: background 200ms ease, transform 100ms ease; } .ds-btn-secondary:hover { background: oklch(0.32 0 0); } .ds-btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 3px oklch(0.55 0.23 27 / 0.5); } .ds-btn-secondary:active { transform: translateY(1px); }"
+    },
+    {
+      "name": "Search Input",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "Client-side stall filter. Transparent fill, hairline veil border, inline search icon.",
+      "html": "<div class=\"ds-search\"><svg class=\"ds-search-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"8\"></circle><path d=\"m21 21-4.3-4.3\"></path></svg><input class=\"ds-search-input\" placeholder=\"Search stalls…\" /></div>",
+      "css": ".ds-search { position: relative; width: 100%; } .ds-search-icon { position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); width: 1rem; height: 1rem; color: oklch(0.708 0 0); pointer-events: none; } .ds-search-input { width: 100%; height: 2rem; padding: 0.25rem 0.625rem 0.25rem 2.25rem; background: transparent; color: oklch(0.985 0 0); font-family: Geist, ui-sans-serif, system-ui, sans-serif; font-size: 0.875rem; border: 1px solid oklch(1 0 0 / 0.1); border-radius: 10px; outline: none; transition: border-color 200ms ease, box-shadow 200ms ease; } .ds-search-input::placeholder { color: oklch(0.708 0 0); } .ds-search-input:focus-visible { border-color: oklch(0.55 0.23 27); box-shadow: 0 0 0 3px oklch(0.55 0.23 27 / 0.5); }"
+    },
+    {
+      "name": "Stall Row",
+      "kind": "card",
+      "refersTo": "card-stall",
+      "description": "A ranked stall in the leaderboard: rank number, name + horn score, Rate action. Card-black, hairline ring, no shadow.",
+      "html": "<div class=\"ds-stall-row\"><span class=\"ds-rank\">1</span><div class=\"ds-stall-main\"><p class=\"ds-stall-name\">Birria Tacos</p><div class=\"ds-stall-meta\"><span class=\"ds-horns\"><span class=\"ds-horn ds-horn-full\">🤘</span><span class=\"ds-horn ds-horn-full\">🤘</span><span class=\"ds-horn ds-horn-full\">🤘</span><span class=\"ds-horn ds-horn-half\">🤘</span><span class=\"ds-horn ds-horn-empty\">🤘</span></span><span class=\"ds-count\">3.5 · 12 ratings</span></div></div><button class=\"ds-btn-primary ds-btn-sm\">Rate</button></div>",
+      "css": ".ds-stall-row { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem; background: oklch(0.205 0 0); border-radius: 14px; box-shadow: inset 0 0 0 1px oklch(1 0 0 / 0.1); } .ds-rank { width: 1.25rem; flex-shrink: 0; text-align: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.875rem; font-weight: 700; font-variant-numeric: tabular-nums; color: oklch(0.708 0 0); } .ds-stall-main { min-width: 0; flex: 1; } .ds-stall-name { margin: 0; font-family: Geist, ui-sans-serif, system-ui, sans-serif; font-size: 1rem; font-weight: 600; color: oklch(0.985 0 0); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-stall-meta { display: flex; align-items: center; gap: 0.5rem; margin-top: 0.125rem; } .ds-count { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; font-variant-numeric: tabular-nums; color: oklch(0.708 0 0); } .ds-horns { display: inline-flex; gap: 0.0625rem; font-size: 1rem; line-height: 1; } .ds-horn-full { filter: drop-shadow(0 0 2px oklch(0.68 0.24 27 / 0.7)); } .ds-horn-empty { opacity: 0.25; filter: grayscale(1); } .ds-horn-half { position: relative; } .ds-btn-sm { height: 1.75rem; padding: 0 0.625rem; font-size: 0.8rem; }"
+    },
+    {
+      "name": "Horn Display",
+      "kind": "custom",
+      "refersTo": "horn-display",
+      "description": "Signature read-only score. Two-layer glyph: desaturated empty horn under a crimson glowing horn clipped by width for half-horn precision. Shown here at 3.5 / 5.",
+      "html": "<div class=\"ds-horn-display\"><span class=\"ds-h\"><span class=\"ds-h-empty\">🤘</span><span class=\"ds-h-fill\" style=\"width:100%\"><span class=\"ds-h-glyph\">🤘</span></span></span><span class=\"ds-h\"><span class=\"ds-h-empty\">🤘</span><span class=\"ds-h-fill\" style=\"width:100%\"><span class=\"ds-h-glyph\">🤘</span></span></span><span class=\"ds-h\"><span class=\"ds-h-empty\">🤘</span><span class=\"ds-h-fill\" style=\"width:100%\"><span class=\"ds-h-glyph\">🤘</span></span></span><span class=\"ds-h\"><span class=\"ds-h-empty\">🤘</span><span class=\"ds-h-fill\" style=\"width:50%\"><span class=\"ds-h-glyph\">🤘</span></span></span><span class=\"ds-h\"><span class=\"ds-h-empty\">🤘</span></span></div>",
+      "css": ".ds-horn-display { display: inline-flex; align-items: center; gap: 0.125rem; font-size: 1.5rem; line-height: 1; } .ds-h { position: relative; display: inline-block; user-select: none; } .ds-h-empty { opacity: 0.25; filter: grayscale(1); } .ds-h-fill { position: absolute; inset: 0; overflow: hidden; } .ds-h-glyph { display: block; filter: drop-shadow(0 0 2px oklch(0.68 0.24 27 / 0.7)); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Blackened Stage",
+    "overview": "Everything emerges from stage-black. The interface is a dark venue with the house lights down; crimson is the spotlight, and it only ever hits what matters — the horns, the rank, the one action in front of you. Weight is carried by darkness and space, never by ornament. There are no skulls, no flames, no chrome: the gravity is real because it's restrained. The system is composed and quiet while you work, saving its one release for the full five-horn rating — the moment the lights come up. It rejects the generic SaaS / shadcn-default dashboard and the Yelp / TripAdvisor review aesthetic alike.",
+    "keyCharacteristics": [
+      "Stage-black surfaces, crimson reserved for accent and signal (≤10% of any screen).",
+      "Mobile-only target (~375–430px); single column, thumb-reachable, bottom-anchored primary action.",
+      "Flat by default — depth from tonal lightness steps + hairline rings, not shadows.",
+      "Composed everywhere; one concentrated release at five horns.",
+      "Metal wordmark as the only display moment; everything else is clean Geist sans."
+    ],
+    "rules": [
+      { "name": "The Spotlight Rule", "body": "Crimson appears on ≤10% of any screen. It marks exactly two things: the action you can take now, and the horn score. If crimson is decorating anything else, it's stolen from the horns — remove it.", "section": "colors" },
+      { "name": "The Two Reds Rule", "body": "Blood Crimson (the brand) and Danger Red (errors) must stay visibly distinct. Never tint an error with the brand crimson; never warn with the horn crimson.", "section": "colors" },
+      { "name": "The One-Wordmark Rule", "body": "The Faceless metal face is used for the wordmark and nowhere else. The moment it appears on a button, a heading, or a label, it becomes costume metal.", "section": "typography" },
+      { "name": "The Tabular-Numbers Rule", "body": "Every horn score, count, and rank renders in Geist Mono with tabular-nums so numbers align and stay still.", "section": "typography" },
+      { "name": "The No-Shadow Rule", "body": "Surfaces never cast drop shadows for decoration. If something must come forward, raise its tonal step or add the hairline ring. The only glow in the system is the crimson on a horn.", "section": "elevation" },
+      { "name": "The Tonal-Step Rule", "body": "Each layer is exactly one lightness step above its parent (≈0.06 L in OKLCH). Don't stack more than three layers.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep the surface stage-black and reserve crimson for the action and the score (≤10% crimson per screen).",
+      "Do convey depth by stepping surface lightness (Stage Black → Card Black → Elevated Black) and a hairline 10%-white ring — never a drop shadow.",
+      "Do render every horn score, count, and rank in Geist Mono with tabular-nums.",
+      "Do keep the Faceless metal face for the wordmark only; let Geist carry everything readable.",
+      "Do make tap targets large and bottom-anchored; design for ~375–430px one-handed first.",
+      "Do concentrate delight in the single five-horn metal moment, and honor prefers-reduced-motion there."
+    ],
+    "donts": [
+      "Don't ship the generic SaaS / shadcn-default look — no neutral gray cards on white, no corporate admin chrome.",
+      "Don't build a Yelp / TripAdvisor review aesthetic — no clutter, no ad-shaped blocks, no star-rating-plus-stock-photo density.",
+      "Don't reach for cliché 'edgy' metal kitsch — no skulls, flames, barbed-wire fonts, or chrome gradients.",
+      "Don't add decorative drop shadows, glassmorphism, or gradients.",
+      "Don't let error red borrow the brand crimson (The Two Reds Rule).",
+      "Don't spread micro-celebration across the product; the five-horn moment is the one release.",
+      "Don't use the metal display face for anything but the wordmark, and don't rely on crimson alone to signal horn fill."
+    ]
+  }
+}
